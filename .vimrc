@@ -89,6 +89,7 @@ set statusline+=%{matchstr(hostname(),'\\w\\+')}@
 set statusline+=%<%F
 set showcmd
 set spell
+set cursorline
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
@@ -100,6 +101,7 @@ highlight StatusLineNC term=NONE cterm=NONE ctermfg=251 ctermbg=NONE
 highlight VertSplit term=NONE cterm=NONE ctermfg=251 ctermbg=NONE
 highlight LineNr term=underline ctermfg=251 guifg=Grey
 highlight EndOfBuffer ctermfg=251
+highlight CursorLineNr ctermfg=lightred ctermbg=darkred
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
