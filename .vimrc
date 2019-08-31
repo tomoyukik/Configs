@@ -6,19 +6,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/koboritomoyuki/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/koboritomoyuki/.cache/dein')
-  call dein#begin('/Users/koboritomoyuki/.cache/dein')
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/koboritomoyuki/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " 自動補完
   call dein#add('Shougo/deoplete.nvim')
@@ -27,6 +23,8 @@ if dein#load_state('/Users/koboritomoyuki/.cache/dein')
     " pip3 install --upgrade neovim
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
   let g:deoplete#enable_at_startup = 1
 
   " メソッド定義
@@ -96,14 +94,19 @@ highlight NonText ctermbg=none
 highlight LineNr ctermbg=none
 highlight Folded ctermbg=none
 highlight EndOfBuffer ctermbg=none 
-highlight StatusLine term=NONE cterm=NONE ctermfg=248 ctermbg=NONE
-highlight StatusLineNC term=NONE cterm=NONE ctermfg=251 ctermbg=NONE
+highlight StatusLine term=NONE cterm=NONE ctermfg=88 ctermbg=NONE
+highlight StatusLineNC term=NONE cterm=NONE ctermfg=138 ctermbg=NONE
 highlight VertSplit term=NONE cterm=NONE ctermfg=251 ctermbg=NONE
 highlight LineNr term=underline ctermfg=251 guifg=Grey
 highlight EndOfBuffer ctermfg=251
-highlight CursorLineNr ctermfg=lightred ctermbg=darkred
+highlight CursorLineNr ctermfg=88 ctermbg=224
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
 
 nnoremap ; :
 
