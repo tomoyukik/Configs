@@ -4,4 +4,5 @@ set -g theme_title_use_abbreviated_path yes
 set -g theme_date_format "+%m/%d/%y %H:%M:%S %Z day %j"
 
 alias ls="ls -a1"
-alias latexmk="docker run -v (pwd):/root/work -it nontan18/texlive:stable latexmk"
+alias latexmk="docker run --rm -v (pwd):/root/work -it nontan18/texlive:stable latexmk"
+alias ghci="docker run --rm -v (pwd):/workspace -it haskell:8.8"
