@@ -25,7 +25,7 @@ if dein#load_state('~/.cache/dein')
   endif
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  let g:deoplete#enable_at_startup = 1
+ " let g:deoplete#enable_at_startup = 1
 
   " メソッド定義
   " call dein#add('szw/vim-tags')
@@ -42,10 +42,35 @@ if dein#load_state('~/.cache/dein')
   call dein#add('ngmy/vim-rubocop', { 'on_ft': 'ruby' })
   call dein#add('vim-ruby/vim-ruby', { 'on_ft': 'ruby' })
   call dein#add('tpope/vim-endwise', { 'on_ft': 'ruby' })
+  call dein#add('Shougo/neocomplcache-rsense.vim')
+
+  " rails
+  call dein#add('tpope/vim-rails')
+
+  " git
+  call dein#add('tpope/vim-fugitive')
+
+  " comment
+  call dein#add('tomtom/tcomment_vim')
+
+  " visualize indent
+  call dein#add('nathanaelkane/vim-indent-guides')
 
   " textile
   " call dein#add('timcharper/textile.vim', { 'on_ft': 'textile' })
   " call dein#add('amiorin/vim-textile', { 'on_ft': 'textile' })
+
+  " markdown
+  " call dein#add('gabrielelana/vim-markdown')
+  " call dein#add('greyblake/vim-preview')
+
+
+  " 括弧補間
+  call dein#add('cohama/lexima.vim')
+  call dein#add('tpope/vim-surround')
+
+  " docker
+  call dein#add('skanehira/docker.vim')
 
   " Required:
   call dein#end()
@@ -88,12 +113,14 @@ set statusline+=%<%F
 set showcmd
 set spell
 set cursorline
+set list
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:␣,extends:⟩,precedes:⟨
 
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 highlight LineNr ctermbg=none
 highlight Folded ctermbg=none
-highlight EndOfBuffer ctermbg=none 
+highlight EndOfBuffer ctermbg=none
 highlight StatusLine term=NONE cterm=NONE ctermfg=88 ctermbg=NONE
 highlight StatusLineNC term=NONE cterm=NONE ctermfg=138 ctermbg=NONE
 highlight VertSplit term=NONE cterm=NONE ctermfg=251 ctermbg=NONE
@@ -119,6 +146,35 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'] }
-let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_ruby_checkers=['rubocop', '--auto-correct']
 " ==================================================
 
+let g:indent_guides_enable_on_vim_startup = 1
+let g:deoplete#enable_at_startup = 1
+
+function SOLSpaceHilight()
+  syntax match SOLSpace "\s\+$" display containedin=ALL
+  highlight SOLSpace term=underline ctermbg=224
+endf
+
+autocmd BufNew,BufRead * call SOLSpaceHilight()
+autocmd BufWritePre * :%s/\s\+$//e
+
+" docker
+" open browser command, deafult is 'open'
+let g:docker_open_browser_cmd = 'open'
+" split temrinal windows, can use vert or tab, etc...
+" see :h vert
+let g:docker_terminal_open = 'bo'
+" check plugin's version when plugin loading.
+" default is checking.
+" If you not want to check, please set 0 to this option.
+let g:docker_plugin_version_check = 1
+" this is registry auth info.
+" if you want to push an image, please set your auth info.
+let g:docker_registry_auth = {
+	\ 'username': 'your name',
+	\ 'password': 'your password',
+	\ 'email': 'your email',
+	\ 'serveraddress': 'https://index.docker.io/v1/',
+	\ }
