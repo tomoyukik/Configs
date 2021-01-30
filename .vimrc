@@ -30,8 +30,6 @@ if dein#load_state('~/.cache/dein')
   " メソッド定義
   " call dein#add('szw/vim-tags')
 
-  call dein#add('tpope/vim-fugitive')
-
   " linter
   call dein#add('vim-syntastic/syntastic')
 
